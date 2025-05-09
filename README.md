@@ -2,7 +2,7 @@
 
 This project shares my experience deploying the Cowrie SSH honeypot, progressively increasing its complexity by enabling Telnet functionality and configuring log forwarding to Splunk Cloud for centralized monitoring and analysis.
 
-#### **1. Setting up a VPS and the Cowrie Honeypot**
+## **1. Setting up a VPS and the Cowrie Honeypot**
 
 For this project, I chose Hostinger as my provider with a basic Ubuntu Server setup. This was my first time setting up a VPS, but the process turned out to be very user-friendly. I had everything up and running in under 20 minutes.
    
@@ -31,7 +31,7 @@ At this point, I tried to start the honeypot, but after some time with no action
 ![VPS Firewall Rules](images/vpsfirewall.png)
 
 
-#### **2. First Interactions Logged**
+## **2. First Interactions Logged**
 
 **First SSH Auth Attempt**
 
@@ -62,7 +62,7 @@ The attacker also used a series of `echo -e` commands with hexadecimal strings t
 Cowrie captured the payload and saved it with the hash `446c26d35cac3ecb54c860fd7c1ed3c51f1ca609b99c772f61a3615a1e31868b`
 
 ![Attacker removing competing malware with rm -rf .a](images/botnet_cleanup.png)
-![Interesting 2](images/binary_assembly.png)
+![Binary Assembly](images/binary_assembly.png)
 
 Searching for the hash on VirusTotal, I also found some comments regarding others detecting the same hash from their honeypots
 
@@ -72,7 +72,7 @@ After this interaction,  I decided to leave the Honeypot running for a few days,
 
 The majority of attempted payloads were unsuccessful since I blocked outbound traffic (maybe too harshly). In the future, I will probably loosen restrictions to observe more detailed interactions with these botnets and possibly capture more payloads.
 
-#### **3. Setting up Splunk Cloud**
+## **3. Setting up Splunk Cloud**
 
 For the next step of the project, it naturally went in the direction of finding a better way to present all of the data, so I've changed an option on the `cowrie.conf` file where we can send the logs to *Splunk Cloud* using an HTTPS Token, which is exactly what I did!
 
@@ -96,7 +96,7 @@ Top Targeted Usernames and Top Targeted Passwords:
 
 ![Dashboard 3](images/dashboard3.png)
 
-#### **Conclusion**
+## **Conclusion**
 
 For this brief experiment, it's safe to say that most, if not all, of the attacks were automated by botnets or scripts. Reviewing the data from the dashboard, the most frequent command was `echo -e "\x6F\x6B"`, which translates to "OK". This was probably used to signal back to a C2 server that the device was ready to receive a payload, or maybe as a simple marker inside the script itself.
 
